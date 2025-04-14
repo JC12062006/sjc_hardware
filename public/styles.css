@@ -1,0 +1,121 @@
+/* Import des polices Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
+
+:root {
+  --bleu-clair: #89F1FF;
+  --bleu-fonce: #06031a;
+  --vert-fonce: #0e3d43;
+  --blanc: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bleu-fonce);
+  color: var(--blanc);
+  line-height: 1.6;
+}
+
+/* Navbar */
+nav {
+  background-color: var(--vert-fonce);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+nav .logo {
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: var(--bleu-clair);
+  text-transform: uppercase;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  color: var(--blanc);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: var(--bleu-clair);
+}
+
+/* Section principale */
+main {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* Formulaire */
+form {
+  background-color: var(--vert-fonce);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(137, 241, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+form input,
+form select,
+form textarea {
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+form button {
+  background-color: var(--bleu-clair);
+  color: var(--bleu-fonce);
+  padding: 0.8rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #6dd8e4;
+}
+
+/* Table (pour les demandes admin) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: var(--blanc);
+  color: var(--bleu-fonce);
+}
+.table-perso{
+  border-collapse: separate;
+  border-spacing: 10px; /* Espace entre les cellules */
+  margin: 20px auto; /* Espace extérieur pour centrer */
+  width: 100%;
+}
