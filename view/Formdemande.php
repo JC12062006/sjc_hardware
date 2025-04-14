@@ -1,4 +1,7 @@
-<?php require_once('./controller/selectType.php'); ?>
+<?php require_once(__DIR__ . '/../controller/selectType.php');?>
+
+<link rel="stylesheet" href="/Promo300/sjc_hardware/css/style.css">
+
 
 <section style="padding: 2rem;">
     <h2 style="color: #89F1FF;">Faire une demande</h2>
@@ -21,4 +24,9 @@
         <textarea name="description" placeholder="Décrivez votre demande" required></textarea><br>
         <button type="submit">Envoyer</button>
     </form>
+
+    <?php if (isset($_GET['erreur']) && $_GET['erreur'] == 'email') : ?>
+        <p style="color: red;">Cette adresse email est déjà utilisée.</p>
+    <?php endif; ?>
+
 </section>

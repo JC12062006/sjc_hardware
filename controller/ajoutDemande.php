@@ -9,14 +9,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_type = $_POST['type'];
     $description = $_POST['description'];
 
-    $stmtUser = $bdd->prepare("INSERT INTO utilisateur (nom, prenom, email, telephone) VALUES (?, ?, ?, ?)");
-    $stmtUser->execute([$nom, $prenom, $email, $telephone]);
-    $id_utilisateur = $bdd->lastInsertId();
+    // Vérifie si l'utilisateur existe déjà (email unique)
+    $checkStmt = $bdd->prepare("SELECT id_utilisateur FROM utilisateur WHERE email = ?");
+    $checkStmt->execute([$email]);
+    $existingUser = $checkStmt->fetch();
 
-    $stmtDemande = $bdd->prepare("INSERT INTO demande (id_utilisateur, id_type, description, date_demande) VALUES (?, ?, ?, NOW())");
-    $stmtDemande->execute([$id_utilisateur, $id_type, $description]);
+    if ($existingUser) {
+        // Redirection avec message d’erreur
+        header('Location: ../view/Formdemande.php?erreur=email');
+        exit();
+    } else {
+        // Insertion utilisateur
+        $stmtUser = $bdd->prepare("INSERT INTO utilisateur (nom, prenom, email, telephone) VALUES (?, ?, ?, ?)");
+        $stmtUser->execute([$nom, $prenom, $email, $telephone]);
+        $id_utilisateur = $bdd->lastInsertId();
 
-    header('Location: ../index.php');
-    exit();
+        // Insertion demande
+        $stmtDemande = $bdd->prepare("INSERT INTO demande (id_utilisateur, id_type, description, date_demande) VALUES (?, ?, ?, NOW())");
+        $stmtDemande->execute([$id_utilisateur, $id_type, $description]);
+
+        header('Location: ../index.php');
+        exit();
+    }
 }
-?>
